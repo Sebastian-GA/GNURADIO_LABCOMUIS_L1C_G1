@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 # -*- coding: utf-8 -*-
 
 #
@@ -7,12 +8,24 @@
 # Title: CalculoPotenciaComunicaciones
 # Author: Sebastian-Esteban
 # Copyright: Sebastian-Esteban
-# GNU Radio version: 3.10.1.1
+# GNU Radio version: 3.9.5.0
+
+from distutils.version import StrictVersion
+
+if __name__ == '__main__':
+    import ctypes
+    import sys
+    if sys.platform.startswith('linux'):
+        try:
+            x11 = ctypes.cdll.LoadLibrary('libX11.so')
+            x11.XInitThreads()
+        except:
+            print("Warning: failed to XInitThreads()")
 
 from PyQt5 import Qt
 from gnuradio import qtgui
 import sip
-from gnuradio import Modulos_L1C
+from gnuradio import analog
 from gnuradio import blocks
 from gnuradio import fft
 from gnuradio.fft import window
@@ -20,26 +33,47 @@ from gnuradio import gr
 from gnuradio.filter import firdes
 import sys
 import signal
+from argparse import ArgumentParser
+from gnuradio.eng_arg import eng_float, intx
+from gnuradio import eng_notation
+import Modulos_L1C
 
 
 
+from gnuradio import qtgui
 
+class Practica3_2(gr.top_block, Qt.QWidget):
 
-
-
-class Practica3_2(gr.hier_block2, Qt.QWidget):
     def __init__(self, l_vect=1024):
-        gr.hier_block2.__init__(
-            self, "CalculoPotenciaComunicaciones",
-                gr.io_signature(1, 1, gr.sizeof_float*1),
-                gr.io_signature(0, 0, 0),
-        )
-
+        gr.top_block.__init__(self, "CalculoPotenciaComunicaciones", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.top_layout = Qt.QVBoxLayout()
+        self.setWindowTitle("CalculoPotenciaComunicaciones")
+        qtgui.util.check_set_qss()
+        try:
+            self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
+        except:
+            pass
+        self.top_scroll_layout = Qt.QVBoxLayout()
+        self.setLayout(self.top_scroll_layout)
+        self.top_scroll = Qt.QScrollArea()
+        self.top_scroll.setFrameStyle(Qt.QFrame.NoFrame)
+        self.top_scroll_layout.addWidget(self.top_scroll)
+        self.top_scroll.setWidgetResizable(True)
+        self.top_widget = Qt.QWidget()
+        self.top_scroll.setWidget(self.top_widget)
+        self.top_layout = Qt.QVBoxLayout(self.top_widget)
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
-        self.setLayout(self.top_layout)
+
+        self.settings = Qt.QSettings("GNU Radio", "Practica3_2")
+
+        try:
+            if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
+                self.restoreGeometry(self.settings.value("geometry").toByteArray())
+            else:
+                self.restoreGeometry(self.settings.value("geometry"))
+        except:
+            pass
 
         ##################################################
         # Parameters
@@ -159,6 +193,7 @@ class Practica3_2(gr.hier_block2, Qt.QWidget):
         self.blocks_nlog10_ff_0 = blocks.nlog10_ff(10, 1, 30)
         self.blocks_multiply_const_vxx_0 = blocks.multiply_const_ff(1/(2*135115.625))
         self.blocks_complex_to_mag_squared_0 = blocks.complex_to_mag_squared(1024)
+        self.analog_sig_source_x_0 = analog.sig_source_f(samp_rate, analog.GR_COS_WAVE, 1000, 1, 0, 0)
         self.Modulos_L1C_SumaVector_0 = Modulos_L1C.SumaVector(l_vect)
 
 
@@ -166,6 +201,7 @@ class Practica3_2(gr.hier_block2, Qt.QWidget):
         # Connections
         ##################################################
         self.connect((self.Modulos_L1C_SumaVector_0, 0), (self.blocks_multiply_const_vxx_0, 0))
+        self.connect((self.analog_sig_source_x_0, 0), (self.blocks_stream_to_vector_0, 0))
         self.connect((self.blocks_complex_to_mag_squared_0, 0), (self.Modulos_L1C_SumaVector_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_nlog10_ff_0, 0))
         self.connect((self.blocks_multiply_const_vxx_0, 0), (self.blocks_nlog10_ff_1, 0))
@@ -174,8 +210,15 @@ class Practica3_2(gr.hier_block2, Qt.QWidget):
         self.connect((self.blocks_nlog10_ff_1, 0), (self.qtgui_number_sink_0, 0))
         self.connect((self.blocks_stream_to_vector_0, 0), (self.fft_vxx_0, 0))
         self.connect((self.fft_vxx_0, 0), (self.blocks_complex_to_mag_squared_0, 0))
-        self.connect((self, 0), (self.blocks_stream_to_vector_0, 0))
 
+
+    def closeEvent(self, event):
+        self.settings = Qt.QSettings("GNU Radio", "Practica3_2")
+        self.settings.setValue("geometry", self.saveGeometry())
+        self.stop()
+        self.wait()
+
+        event.accept()
 
     def get_l_vect(self):
         return self.l_vect
@@ -188,4 +231,47 @@ class Practica3_2(gr.hier_block2, Qt.QWidget):
 
     def set_samp_rate(self, samp_rate):
         self.samp_rate = samp_rate
+        self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
 
+
+
+def argument_parser():
+    parser = ArgumentParser()
+    parser.add_argument(
+        "--l-vect", dest="l_vect", type=intx, default=1024,
+        help="Set Longitud FFT [default=%(default)r]")
+    return parser
+
+
+def main(top_block_cls=Practica3_2, options=None):
+    if options is None:
+        options = argument_parser().parse_args()
+
+    if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
+        style = gr.prefs().get_string('qtgui', 'style', 'raster')
+        Qt.QApplication.setGraphicsSystem(style)
+    qapp = Qt.QApplication(sys.argv)
+
+    tb = top_block_cls(l_vect=options.l_vect)
+
+    tb.start()
+
+    tb.show()
+
+    def sig_handler(sig=None, frame=None):
+        tb.stop()
+        tb.wait()
+
+        Qt.QApplication.quit()
+
+    signal.signal(signal.SIGINT, sig_handler)
+    signal.signal(signal.SIGTERM, sig_handler)
+
+    timer = Qt.QTimer()
+    timer.start(500)
+    timer.timeout.connect(lambda: None)
+
+    qapp.exec_()
+
+if __name__ == '__main__':
+    main()

@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: CalculoPotencia
+    id: multiplicar2
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -33,27 +33,6 @@ options:
     state: enabled
 
 blocks:
-- name: amplitude
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ''
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '1'
-    stop: '100'
-    value: '50'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [296, 12.0]
-    rotation: 0
-    state: true
 - name: samp_rate
   id: variable
   parameters:
@@ -78,7 +57,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [504, 260.0]
+    coordinate: [1072, 156.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -86,21 +65,61 @@ blocks:
   parameters:
     affinity: ''
     alias: ''
-    amp: amplitude
+    amp: '1'
     comment: ''
-    freq: '1000'
+    freq: 25+26
     maxoutbuf: '0'
     minoutbuf: '0'
     offset: '0'
     phase: '0'
     samp_rate: samp_rate
     type: float
-    waveform: analog.GR_SQR_WAVE
+    waveform: analog.GR_SAW_WAVE
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [152, 244.0]
+    coordinate: [296, 220.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_1
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: '1764'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [296, 372.0]
+    rotation: 0
+    state: true
+- name: blocks_multiply_xx_0
+  id: blocks_multiply_xx
+  parameters:
+    affinity: ''
+    alias: ''
+    comment: ''
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    num_inputs: '2'
+    type: float
+    vlen: '1'
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 272.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -181,9 +200,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [520, 460.0]
+    coordinate: [1000, 340.0]
     rotation: 0
-    state: true
+    state: disabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -278,14 +297,16 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [504, 364.0]
+    coordinate: [1016, 232.0]
     rotation: 0
     state: true
 
 connections:
-- [analog_sig_source_x_0, '0', Practica32_0, '0']
-- [analog_sig_source_x_0, '0', qtgui_freq_sink_x_0, '0']
-- [analog_sig_source_x_0, '0', qtgui_time_sink_x_0, '0']
+- [analog_sig_source_x_0, '0', blocks_multiply_xx_0, '0']
+- [analog_sig_source_x_1, '0', blocks_multiply_xx_0, '1']
+- [blocks_multiply_xx_0, '0', Practica32_0, '0']
+- [blocks_multiply_xx_0, '0', qtgui_freq_sink_x_0, '0']
+- [blocks_multiply_xx_0, '0', qtgui_time_sink_x_0, '0']
 
 metadata:
   file_format: 1

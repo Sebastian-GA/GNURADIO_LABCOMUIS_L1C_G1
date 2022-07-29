@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: hb_qt_gui
     hier_block_src_path: '.:'
-    id: Practica3_2
+    id: Practica32
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -48,7 +48,7 @@ blocks:
 - name: Modulos_L1C_SumaVector_0
   id: Modulos_L1C_SumaVector
   parameters:
-    Param1: l_vect
+    PARAM1: l_vect
     affinity: ''
     alias: ''
     comment: ''
@@ -58,9 +58,31 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [200, 332.0]
+    coordinate: [808, 380.0]
     rotation: 0
     state: true
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: '1'
+    comment: ''
+    freq: '1000'
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [240, 348.0]
+    rotation: 0
+    state: disabled
 - name: blocks_complex_to_mag_squared_0
   id: blocks_complex_to_mag_squared
   parameters:
@@ -74,7 +96,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [288, 492.0]
+    coordinate: [896, 540.0]
     rotation: 180
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -92,7 +114,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [440, 372.0]
+    coordinate: [1048, 420.0]
     rotation: 0
     state: true
 - name: blocks_nlog10_ff_0
@@ -110,7 +132,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [552, 204.0]
+    coordinate: [1160, 252.0]
     rotation: 0
     state: true
 - name: blocks_nlog10_ff_1
@@ -128,7 +150,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [560, 284.0]
+    coordinate: [1168, 332.0]
     rotation: 0
     state: true
 - name: blocks_stream_to_vector_0
@@ -146,7 +168,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [64.0, 408]
+    coordinate: [544.0, 472]
     rotation: 270
     state: true
 - name: fft_vxx_0
@@ -167,7 +189,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [216, 596.0]
+    coordinate: [824, 644.0]
     rotation: 0
     state: true
 - name: l_vect
@@ -204,9 +226,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [60.0, 264]
+    coordinate: [636.0, 240]
     rotation: 270
-    state: true
+    state: enabled
 - name: qtgui_number_sink_0
   id: qtgui_number_sink
   parameters:
@@ -267,7 +289,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [728, 308.0]
+    coordinate: [1336, 356.0]
     rotation: 0
     state: true
 - name: qtgui_number_sink_1
@@ -330,7 +352,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [640, 516.0]
+    coordinate: [1248, 564.0]
     rotation: 0
     state: true
 - name: qtgui_number_sink_2
@@ -393,12 +415,13 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [712, 156.0]
+    coordinate: [1320, 204.0]
     rotation: 0
     state: true
 
 connections:
 - [Modulos_L1C_SumaVector_0, '0', blocks_multiply_const_vxx_0, '0']
+- [analog_sig_source_x_0, '0', blocks_stream_to_vector_0, '0']
 - [blocks_complex_to_mag_squared_0, '0', Modulos_L1C_SumaVector_0, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_nlog10_ff_0, '0']
 - [blocks_multiply_const_vxx_0, '0', blocks_nlog10_ff_1, '0']
