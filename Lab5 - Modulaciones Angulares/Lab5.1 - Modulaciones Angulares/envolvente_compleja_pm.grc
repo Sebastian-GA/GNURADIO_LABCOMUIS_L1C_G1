@@ -5,7 +5,7 @@ options:
     category: '[Modulos L1C]'
     cmake_opt: ''
     comment: ''
-    copyright: UIS
+    copyright: ''
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
