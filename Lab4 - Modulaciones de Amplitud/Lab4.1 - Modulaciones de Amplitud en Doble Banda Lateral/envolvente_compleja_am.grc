@@ -2,16 +2,16 @@ options:
   parameters:
     author: Sebastian - Esteban
     catch_exceptions: 'True'
-    category: '[Modulos_L1C]'
+    category: '[Modulos L1C]'
     cmake_opt: ''
     comment: ''
-    copyright: UIS
+    copyright: ''
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: hb
     hier_block_src_path: '.:'
-    id: moduladorAMV2
+    id: ModuladorAM
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,13 +22,13 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: modulador AM V2
+    title: Envolvente Compleja AM
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [0, 12.0]
+    coordinate: [8, 12.0]
     rotation: 0
     state: enabled
 
@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [192, 12.0]
     rotation: 0
     state: enabled
 - name: Ac
@@ -51,7 +51,7 @@ blocks:
     alias: ''
     comment: ''
     hide: none
-    label: Amplitud de la portadora
+    label: Amplitud de Portadora
     short_id: ''
     type: eng_float
     value: '1'
@@ -59,9 +59,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 20.0]
+    coordinate: [512, 12.0]
     rotation: 0
-    state: enabled
+    state: true
 - name: blocks_add_const_vxx_0
   id: blocks_add_const_vxx
   parameters:
@@ -77,7 +77,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [304, 212.0]
+    coordinate: [344, 212.0]
     rotation: 0
     state: true
 - name: blocks_float_to_complex_0
@@ -93,7 +93,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [448, 216.0]
+    coordinate: [496, 216.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_0
@@ -111,7 +111,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [192, 324.0]
+    coordinate: [184, 212.0]
     rotation: 0
     state: true
 - name: blocks_multiply_const_vxx_1
@@ -129,7 +129,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [408, 396.0]
+    coordinate: [688, 228.0]
     rotation: 0
     state: true
 - name: blocks_null_source_0
@@ -148,7 +148,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [152, 496.0]
+    coordinate: [280, 304.0]
     rotation: 0
     state: true
 - name: ka
@@ -165,7 +165,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [280, 20.0]
+    coordinate: [384, 12.0]
     rotation: 0
     state: true
 - name: pad_sink_0
@@ -174,7 +174,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    label: s(t)
+    label: out
     num_streams: '1'
     optional: 'False'
     type: complex
@@ -183,7 +183,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 340.0]
+    coordinate: [864, 228.0]
     rotation: 0
     state: true
 - name: pad_source_0
@@ -192,7 +192,7 @@ blocks:
     affinity: ''
     alias: ''
     comment: ''
-    label: m(t)
+    label: in
     maxoutbuf: '0'
     minoutbuf: '0'
     num_streams: '1'
@@ -203,7 +203,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 324.0]
+    coordinate: [48, 212.0]
     rotation: 0
     state: true
 
@@ -217,3 +217,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0

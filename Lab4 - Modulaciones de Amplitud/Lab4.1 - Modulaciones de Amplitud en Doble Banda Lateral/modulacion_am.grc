@@ -5,13 +5,13 @@ options:
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
-    copyright: UIS
+    copyright: ''
     description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: MODULADORAM
+    id: modulacionAM
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,44 +22,23 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: MODULADORAM
+    title: Modulacion AM
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [8, 12.0]
     rotation: 0
     state: enabled
 
 blocks:
-- name: A
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: Amplitud mensaje
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: 10e-3
-    stop: '4'
-    value: '1'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [312, 12.0]
-    rotation: 0
-    state: true
 - name: Ac
   id: variable_qtgui_range
   parameters:
     comment: ''
     gui_hint: ''
-    label: Amplitud portadora
+    label: Amplitud Portadora
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -72,78 +51,15 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [496, 12.0]
+    coordinate: [504, 12.0]
     rotation: 0
     state: true
-- name: Fm
+- name: Am
   id: variable_qtgui_range
   parameters:
     comment: ''
     gui_hint: ''
-    label: 'frecuencia del mensaje '
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: 1e3
-    stop: 100e3
-    value: 20e3
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1192, 12.0]
-    rotation: 0
-    state: true
-- name: GTX
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: ganancia TX
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '0'
-    step: '1'
-    stop: '31'
-    value: '0'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [1048, 12.0]
-    rotation: 0
-    state: true
-- name: fc
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: frecuencia portadora {MHz}
-    min_len: '200'
-    orient: QtCore.Qt.Horizontal
-    rangeType: float
-    start: '50'
-    step: 100e-3
-    stop: '2200'
-    value: '50'
-    widget: counter_slider
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [864, 12.0]
-    rotation: 0
-    state: true
-- name: ka
-  id: variable_qtgui_range
-  parameters:
-    comment: ''
-    gui_hint: ''
-    label: coeficiente ka
+    label: Amplitud Mensaje
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -156,45 +72,107 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 12.0]
+    coordinate: [352, 12.0]
+    rotation: 0
+    state: true
+- name: GTX
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Ganancia TX
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: '1'
+    stop: '31'
+    value: '0'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [1104, 12.0]
+    rotation: 0
+    state: disabled
+- name: fc
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia Portadora [MHz]
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '50'
+    step: 100e-3
+    stop: '2200'
+    value: '50'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [936, 12.0]
+    rotation: 0
+    state: disabled
+- name: fm
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Frecuencia Mensaje
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 1e3
+    stop: 100e3
+    value: 20e3
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [784, 12.0]
+    rotation: 0
+    state: true
+- name: ka
+  id: variable_qtgui_range
+  parameters:
+    comment: ''
+    gui_hint: ''
+    label: Coeficiente ka
+    min_len: '200'
+    orient: QtCore.Qt.Horizontal
+    rangeType: float
+    start: '0'
+    step: 10e-3
+    stop: '4'
+    value: '1'
+    widget: counter_slider
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [656, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
   id: variable
   parameters:
     comment: ''
-    value: '200000'
+    value: 200e3
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [176, 12.0]
     rotation: 0
     state: enabled
-- name: analog_sig_source_x_0
-  id: analog_sig_source_x
-  parameters:
-    affinity: ''
-    alias: ''
-    amp: A
-    comment: ''
-    freq: Fm
-    maxoutbuf: '0'
-    minoutbuf: '0'
-    offset: '0'
-    phase: '0'
-    samp_rate: samp_rate
-    type: float
-    waveform: analog.GR_COS_WAVE
-  states:
-    bus_sink: false
-    bus_source: false
-    bus_structure: null
-    coordinate: [280, 228.0]
-    rotation: 0
-    state: true
-- name: moduladorAMV2_0
-  id: moduladorAMV2
+- name: ModuladorAM_0
+  id: ModuladorAM
   parameters:
     Ac: Ac
     affinity: ''
@@ -207,7 +185,29 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [544, 268.0]
+    coordinate: [304, 236.0]
+    rotation: 0
+    state: true
+- name: analog_sig_source_x_0
+  id: analog_sig_source_x
+  parameters:
+    affinity: ''
+    alias: ''
+    amp: Am
+    comment: ''
+    freq: fm
+    maxoutbuf: '0'
+    minoutbuf: '0'
+    offset: '0'
+    phase: '0'
+    samp_rate: samp_rate
+    type: float
+    waveform: analog.GR_COS_WAVE
+  states:
+    bus_sink: false
+    bus_source: false
+    bus_structure: null
+    coordinate: [56, 204.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -288,9 +288,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 372.0]
+    coordinate: [616, 300.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: qtgui_time_sink_x_0
   id: qtgui_time_sink_x
   parameters:
@@ -385,9 +385,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 460.0]
+    coordinate: [616, 172.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: uhd_usrp_sink_0
   id: uhd_usrp_sink
   parameters:
@@ -662,15 +662,16 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [928, 236.0]
+    coordinate: [840, 196.0]
     rotation: 0
-    state: enabled
+    state: disabled
 
 connections:
-- [analog_sig_source_x_0, '0', moduladorAMV2_0, '0']
-- [moduladorAMV2_0, '0', qtgui_freq_sink_x_0, '0']
-- [moduladorAMV2_0, '0', qtgui_time_sink_x_0, '0']
-- [moduladorAMV2_0, '0', uhd_usrp_sink_0, '0']
+- [ModuladorAM_0, '0', qtgui_freq_sink_x_0, '0']
+- [ModuladorAM_0, '0', qtgui_time_sink_x_0, '0']
+- [ModuladorAM_0, '0', uhd_usrp_sink_0, '0']
+- [analog_sig_source_x_0, '0', ModuladorAM_0, '0']
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0
