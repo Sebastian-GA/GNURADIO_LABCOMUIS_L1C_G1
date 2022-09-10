@@ -11,17 +11,17 @@ import numpy
 import math
 from gnuradio import gr
 
-class ParteEnteraL1C(gr.sync_block):
+class ParteEntera(gr.sync_block):
     """
-    docstring for block ParteEnteraL1C
+    docstring for block ParteEntera
     """
     def __init__(self, PARAM1, PARAM2):
         self.PARAM1 = PARAM1
         self.PARAM2 = PARAM2
         gr.sync_block.__init__(self,
-            name="ParteEnteraL1C",
-            in_sig=[numpy.float32, ],
-            out_sig=[numpy.float32, ])
+            name="ParteEntera",
+            in_sig=[numpy.float32],
+            out_sig=[numpy.float32])
 
 
     def work(self, input_items, output_items):
@@ -30,7 +30,7 @@ class ParteEnteraL1C(gr.sync_block):
         # <+signal processing here+>
         for i in range(len(in0)):
             if self.PARAM1:
-                out[i] = math.floor(in0[i])
+                out[i]=math.floor(in0[i])
             else:
-                out[i] = math.ceil(in0[i])
+                out[i]=math.ceil(in0[i])
         return len(output_items[0])
