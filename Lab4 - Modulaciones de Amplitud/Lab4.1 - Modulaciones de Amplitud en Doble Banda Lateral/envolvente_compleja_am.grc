@@ -2,7 +2,7 @@ options:
   parameters:
     author: Sebastian - Esteban
     catch_exceptions: 'True'
-    category: '[Modulos L1C]'
+    category: '[Modulos_L1C]'
     cmake_opt: ''
     comment: ''
     copyright: ''
