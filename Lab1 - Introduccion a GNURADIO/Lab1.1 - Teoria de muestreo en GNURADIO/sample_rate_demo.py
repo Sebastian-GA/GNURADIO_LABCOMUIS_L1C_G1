@@ -6,9 +6,8 @@
 #
 # GNU Radio Python Flow Graph
 # Title: Sample Rate Demo
-# Author: Sebastián - Esteban - G01
-# Description: Sample Rate Demo
-# GNU Radio version: 3.10.1.1
+# Author: Sebastian - Esteban
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -42,7 +41,7 @@ from PyQt5 import QtCore
 
 from gnuradio import qtgui
 
-class practica1(gr.top_block, Qt.QWidget):
+class sample_rate_demo(gr.top_block, Qt.QWidget):
 
     def __init__(self):
         gr.top_block.__init__(self, "Sample Rate Demo", catch_exceptions=True)
@@ -65,7 +64,7 @@ class practica1(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "practica1")
+        self.settings = Qt.QSettings("GNU Radio", "sample_rate_demo")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -78,20 +77,20 @@ class practica1(gr.top_block, Qt.QWidget):
         ##################################################
         # Variables
         ##################################################
-        self.samp_rate = samp_rate = 20000
-        self.freq = freq = 2000
+        self.samp_rate = samp_rate = 10e3
+        self.freq = freq = 2e3
 
         ##################################################
         # Blocks
         ##################################################
-        self._samp_rate_range = Range(1000, 400000, 1000, 20000, 200)
-        self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, "'samp_rate'", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._samp_rate_range = Range(1e3, 400e3, 1e3, 10e3, 200)
+        self._samp_rate_win = RangeWidget(self._samp_rate_range, self.set_samp_rate, "Frecuencia de Muestreo", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._samp_rate_win)
-        self._freq_range = Range(1000, 40000, 1000, 2000, 200)
-        self._freq_win = RangeWidget(self._freq_range, self.set_freq, "Frequency", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._freq_range = Range(1e3, 40e3, 1e3, 2e3, 200)
+        self._freq_win = RangeWidget(self._freq_range, self.set_freq, "Frecuencia", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._freq_win)
         self.qtgui_time_sink_x_0 = qtgui.time_sink_f(
-            128, #size
+            1024, #size
             samp_rate, #samp_rate
             "", #name
             1, #number of inputs
@@ -108,7 +107,7 @@ class practica1(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.enable_grid(False)
         self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(True)
 
 
         labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
@@ -121,7 +120,7 @@ class practica1(gr.top_block, Qt.QWidget):
             1.0, 1.0, 1.0, 1.0, 1.0]
         styles = [1, 1, 1, 1, 1,
             1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
+        markers = [0, -1, -1, -1, -1,
             -1, -1, -1, -1, -1]
 
 
@@ -139,10 +138,10 @@ class practica1(gr.top_block, Qt.QWidget):
         self._qtgui_time_sink_x_0_win = sip.wrapinstance(self.qtgui_time_sink_x_0.qwidget(), Qt.QWidget)
         self.top_layout.addWidget(self._qtgui_time_sink_x_0_win)
         self.qtgui_freq_sink_x_0 = qtgui.freq_sink_f(
-            2048, #size
+            1024, #size
             window.WIN_BLACKMAN_hARRIS, #wintype
             0, #fc
-            32000, #bw
+            samp_rate, #bw
             "", #name
             1,
             None # parent
@@ -194,7 +193,7 @@ class practica1(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "practica1")
+        self.settings = Qt.QSettings("GNU Radio", "sample_rate_demo")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -208,6 +207,7 @@ class practica1(gr.top_block, Qt.QWidget):
         self.samp_rate = samp_rate
         self.analog_sig_source_x_0.set_sampling_freq(self.samp_rate)
         self.blocks_throttle_0.set_sample_rate(self.samp_rate)
+        self.qtgui_freq_sink_x_0.set_frequency_range(0, self.samp_rate)
         self.qtgui_time_sink_x_0.set_samp_rate(self.samp_rate)
 
     def get_freq(self):
@@ -220,7 +220,7 @@ class practica1(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=practica1, options=None):
+def main(top_block_cls=sample_rate_demo, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

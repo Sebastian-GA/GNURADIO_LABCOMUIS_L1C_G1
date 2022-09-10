@@ -1,17 +1,17 @@
 options:
   parameters:
-    author: "Sebasti\xE1n - Esteban - G01"
+    author: Sebastian - Esteban
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
     comment: ''
     copyright: ''
-    description: Sample Rate Demo
+    description: ''
     gen_cmake: 'On'
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: practica1
+    id: sample_rate_demo
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -28,7 +28,7 @@ options:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [8, 12.0]
     rotation: 0
     state: enabled
 
@@ -38,20 +38,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: Frequency
+    label: Frecuencia
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '1000'
-    step: '1000'
-    stop: '40000'
-    value: '2000'
+    start: 1e3
+    step: 1e3
+    stop: 40e3
+    value: 2e3
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [320, 28.0]
+    coordinate: [336, 12.0]
     rotation: 0
     state: true
 - name: samp_rate
@@ -63,7 +63,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [208, 20.0]
+    coordinate: [176, 12.0]
     rotation: 0
     state: disabled
 - name: samp_rate
@@ -71,20 +71,20 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: ''
+    label: Frecuencia de Muestreo
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
-    start: '1000'
-    step: '1000'
-    stop: '400000'
-    value: '20000'
+    start: 1e3
+    step: 1e3
+    stop: 400e3
+    value: 10e3
     widget: counter_slider
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [448, 44.0]
+    coordinate: [456, 12.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0
@@ -106,7 +106,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [128, 412.0]
+    coordinate: [56, 212.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -125,7 +125,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [400, 452.0]
+    coordinate: [280, 252.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -146,7 +146,7 @@ blocks:
     autoscale: 'False'
     average: '1.0'
     axislabels: 'True'
-    bw: '32000'
+    bw: samp_rate
     color1: '"blue"'
     color10: '"dark blue"'
     color2: '"red"'
@@ -160,7 +160,7 @@ blocks:
     comment: ''
     ctrlpanel: 'False'
     fc: '0'
-    fftsize: '2048'
+    fftsize: '1024'
     freqhalf: 'True'
     grid: 'False'
     gui_hint: ''
@@ -206,7 +206,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [688, 540.0]
+    coordinate: [488, 284.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -252,7 +252,7 @@ blocks:
     label8: Signal 8
     label9: Signal 9
     legend: 'True'
-    marker1: '-1'
+    marker1: '0'
     marker10: '-1'
     marker2: '-1'
     marker3: '-1'
@@ -264,9 +264,9 @@ blocks:
     marker9: '-1'
     name: '""'
     nconnections: '1'
-    size: '128'
+    size: '1024'
     srate: samp_rate
-    stemplot: 'False'
+    stemplot: 'True'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -303,7 +303,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [680, 348.0]
+    coordinate: [488, 180.0]
     rotation: 0
     state: true
 
@@ -314,3 +314,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0
