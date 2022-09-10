@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: Sebastian - Esteban - G01
+    author: Sebastian - Esteban
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: Practica2_1
+    id: configuracion_usrp
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,13 +22,13 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: ConfiguracionUSRP
+    title: Configuracion USRP
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [8, 8]
+    coordinate: [8, 12.0]
     rotation: 0
     state: enabled
 
@@ -38,12 +38,12 @@ blocks:
   parameters:
     comment: ''
     gui_hint: ''
-    label: "Amplitud se\xF1al TX"
+    label: Amplitud
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
     start: '0'
-    step: 1e-4
+    step: 100e-6
     stop: '1'
     value: '1'
     widget: counter_slider
@@ -51,15 +51,15 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [568, 4.0]
+    coordinate: [624, 12.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: GTX
   id: variable_qtgui_range
   parameters:
     comment: ''
     gui_hint: ''
-    label: Ganancia del TX
+    label: Ganancia TX
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -72,15 +72,15 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [424, 4.0]
+    coordinate: [504, 12.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: fc
   id: variable_qtgui_range
   parameters:
     comment: ''
     gui_hint: ''
-    label: FrecuenciaPortadora
+    label: Frecuencia Portadora
     min_len: '200'
     orient: QtCore.Qt.Horizontal
     rangeType: float
@@ -93,9 +93,9 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [256, 4.0]
+    coordinate: [344, 12.0]
     rotation: 0
-    state: true
+    state: enabled
 - name: samp_rate
   id: variable
   parameters:
@@ -105,7 +105,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [168, 4.0]
+    coordinate: [176, 12.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -127,7 +127,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [176, 324.0]
+    coordinate: [56, 204.0]
     rotation: 0
     state: true
 - name: uhd_usrp_sink_0
@@ -404,7 +404,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [584, 356.0]
+    coordinate: [336, 196.0]
     rotation: 0
     state: true
 
@@ -413,3 +413,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0

@@ -5,9 +5,9 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: ConfiguracionUSRP
-# Author: Sebastian - Esteban - G01
-# GNU Radio version: 3.10.1.1
+# Title: Configuracion USRP
+# Author: Sebastian - Esteban
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -40,12 +40,12 @@ from PyQt5 import QtCore
 
 from gnuradio import qtgui
 
-class Practica2_1(gr.top_block, Qt.QWidget):
+class configuracion_usrp(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "ConfiguracionUSRP", catch_exceptions=True)
+        gr.top_block.__init__(self, "Configuracion USRP", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("ConfiguracionUSRP")
+        self.setWindowTitle("Configuracion USRP")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -63,7 +63,7 @@ class Practica2_1(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "Practica2_1")
+        self.settings = Qt.QSettings("GNU Radio", "configuracion_usrp")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -85,13 +85,13 @@ class Practica2_1(gr.top_block, Qt.QWidget):
         # Blocks
         ##################################################
         self._fc_range = Range(50e6, 2.2e9, 1e6, 50e6, 200)
-        self._fc_win = RangeWidget(self._fc_range, self.set_fc, "FrecuenciaPortadora", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._fc_win = RangeWidget(self._fc_range, self.set_fc, "Frecuencia Portadora", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._fc_win)
         self._GTX_range = Range(0, 30, 1, 0, 200)
-        self._GTX_win = RangeWidget(self._GTX_range, self.set_GTX, "Ganancia del TX", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._GTX_win = RangeWidget(self._GTX_range, self.set_GTX, "Ganancia TX", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._GTX_win)
-        self._A_range = Range(0, 1, 1e-4, 1, 200)
-        self._A_win = RangeWidget(self._A_range, self.set_A, "Amplitud señal TX", "counter_slider", float, QtCore.Qt.Horizontal)
+        self._A_range = Range(0, 1, 100e-6, 1, 200)
+        self._A_win = RangeWidget(self._A_range, self.set_A, "Amplitud", "counter_slider", float, QtCore.Qt.Horizontal)
         self.top_layout.addWidget(self._A_win)
         self.uhd_usrp_sink_0 = uhd.usrp_sink(
             ",".join(("", '')),
@@ -118,7 +118,7 @@ class Practica2_1(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "Practica2_1")
+        self.settings = Qt.QSettings("GNU Radio", "configuracion_usrp")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -156,7 +156,7 @@ class Practica2_1(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=Practica2_1, options=None):
+def main(top_block_cls=configuracion_usrp, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')
