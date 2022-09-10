@@ -5,9 +5,9 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: Tutorial_two_4
-# Author: Sebastian - Esteban - G01
-# GNU Radio version: 3.10.1.1
+# Title: Interpolacion y Diesmado
+# Author: Sebastian - Esteban
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -40,12 +40,12 @@ from gnuradio import eng_notation
 
 from gnuradio import qtgui
 
-class punto_2(gr.top_block, Qt.QWidget):
+class interpolacion_y_diesmado(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "Tutorial_two_4", catch_exceptions=True)
+        gr.top_block.__init__(self, "Interpolacion y Diesmado", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("Tutorial_two_4")
+        self.setWindowTitle("Interpolacion y Diesmado")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -63,7 +63,7 @@ class punto_2(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "punto_2")
+        self.settings = Qt.QSettings("GNU Radio", "interpolacion_y_diesmado")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -114,7 +114,7 @@ class punto_2(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.enable_grid(False)
         self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(True)
 
 
         labels = ['Original', 'Interpolation', 'Decimation', 'Signal 4', 'Signal 5',
@@ -127,7 +127,7 @@ class punto_2(gr.top_block, Qt.QWidget):
             1.0, 1.0, 1.0, 1.0, 1.0]
         styles = [1, 1, 1, 1, 1,
             1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
+        markers = [0, 0, 0, -1, -1,
             -1, -1, -1, -1, -1]
 
 
@@ -209,7 +209,7 @@ class punto_2(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "punto_2")
+        self.settings = Qt.QSettings("GNU Radio", "interpolacion_y_diesmado")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -231,7 +231,7 @@ class punto_2(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=punto_2, options=None):
+def main(top_block_cls=interpolacion_y_diesmado, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

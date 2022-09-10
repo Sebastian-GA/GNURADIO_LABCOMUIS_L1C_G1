@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: Sebastian - Esteban - G01
+    author: Sebastian - Esteban
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: punto_2
+    id: interpolacion_y_diesmado
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,13 +22,13 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: Tutorial_two_4
+    title: Interpolacion y Diesmado
     window_size: (1000,1000)
   states:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [16, 12.0]
+    coordinate: [8, 12.0]
     rotation: 0
     state: enabled
 
@@ -42,7 +42,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [184, 12]
+    coordinate: [176, 12.0]
     rotation: 0
     state: enabled
 - name: analog_sig_source_x_0
@@ -64,7 +64,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [88, 228.0]
+    coordinate: [48, 156.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_0
@@ -86,7 +86,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [88, 356.0]
+    coordinate: [48, 284.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_0_1
@@ -108,7 +108,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [88, 484.0]
+    coordinate: [48, 412.0]
     rotation: 0
     state: true
 - name: blocks_throttle_0
@@ -127,7 +127,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [544, 268.0]
+    coordinate: [504, 196.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -208,7 +208,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 464.0]
+    coordinate: [728, 392.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -254,10 +254,10 @@ blocks:
     label8: Signal 8
     label9: Signal 9
     legend: 'True'
-    marker1: '-1'
+    marker1: '0'
     marker10: '-1'
-    marker2: '-1'
-    marker3: '-1'
+    marker2: '0'
+    marker3: '0'
     marker4: '-1'
     marker5: '-1'
     marker6: '-1'
@@ -268,7 +268,7 @@ blocks:
     nconnections: '3'
     size: '1024'
     srate: samp_rate
-    stemplot: 'False'
+    stemplot: 'True'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -305,7 +305,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [768, 272.0]
+    coordinate: [728, 200.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0
@@ -325,7 +325,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 244.0]
+    coordinate: [288, 172.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0_0
@@ -345,7 +345,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 372.0]
+    coordinate: [288, 300.0]
     rotation: 0
     state: true
 - name: rational_resampler_xxx_0_1
@@ -365,7 +365,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [328, 500.0]
+    coordinate: [288, 428.0]
     rotation: 0
     state: true
 
@@ -383,3 +383,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0
