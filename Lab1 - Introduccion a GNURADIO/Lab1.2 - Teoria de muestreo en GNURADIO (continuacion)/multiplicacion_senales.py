@@ -5,9 +5,9 @@
 # SPDX-License-Identifier: GPL-3.0
 #
 # GNU Radio Python Flow Graph
-# Title: parte3
-# Author: Sebastian - Esteban - G01
-# GNU Radio version: 3.10.1.1
+# Title: Multiplicacion Señales
+# Author: Sebastian - Esteban
+# GNU Radio version: 3.10.2.0
 
 from packaging.version import Version as StrictVersion
 
@@ -41,12 +41,12 @@ from PyQt5 import QtCore
 
 from gnuradio import qtgui
 
-class punto_3(gr.top_block, Qt.QWidget):
+class multiplicacion_senales(gr.top_block, Qt.QWidget):
 
     def __init__(self):
-        gr.top_block.__init__(self, "parte3", catch_exceptions=True)
+        gr.top_block.__init__(self, "Multiplicacion Señales", catch_exceptions=True)
         Qt.QWidget.__init__(self)
-        self.setWindowTitle("parte3")
+        self.setWindowTitle("Multiplicacion Señales")
         qtgui.util.check_set_qss()
         try:
             self.setWindowIcon(Qt.QIcon.fromTheme('gnuradio-grc'))
@@ -64,7 +64,7 @@ class punto_3(gr.top_block, Qt.QWidget):
         self.top_grid_layout = Qt.QGridLayout()
         self.top_layout.addLayout(self.top_grid_layout)
 
-        self.settings = Qt.QSettings("GNU Radio", "punto_3")
+        self.settings = Qt.QSettings("GNU Radio", "multiplicacion_senales")
 
         try:
             if StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
@@ -103,7 +103,7 @@ class punto_3(gr.top_block, Qt.QWidget):
         self.qtgui_time_sink_x_0.enable_grid(False)
         self.qtgui_time_sink_x_0.enable_axis_labels(True)
         self.qtgui_time_sink_x_0.enable_control_panel(False)
-        self.qtgui_time_sink_x_0.enable_stem_plot(False)
+        self.qtgui_time_sink_x_0.enable_stem_plot(True)
 
 
         labels = ['Signal 1', 'Signal 2', 'Signal 3', 'Signal 4', 'Signal 5',
@@ -116,7 +116,7 @@ class punto_3(gr.top_block, Qt.QWidget):
             1.0, 1.0, 1.0, 1.0, 1.0]
         styles = [1, 1, 1, 1, 1,
             1, 1, 1, 1, 1]
-        markers = [-1, -1, -1, -1, -1,
+        markers = [0, -1, -1, -1, -1,
             -1, -1, -1, -1, -1]
 
 
@@ -193,7 +193,7 @@ class punto_3(gr.top_block, Qt.QWidget):
 
 
     def closeEvent(self, event):
-        self.settings = Qt.QSettings("GNU Radio", "punto_3")
+        self.settings = Qt.QSettings("GNU Radio", "multiplicacion_senales")
         self.settings.setValue("geometry", self.saveGeometry())
         self.stop()
         self.wait()
@@ -214,7 +214,7 @@ class punto_3(gr.top_block, Qt.QWidget):
 
 
 
-def main(top_block_cls=punto_3, options=None):
+def main(top_block_cls=multiplicacion_senales, options=None):
 
     if StrictVersion("4.5.0") <= StrictVersion(Qt.qVersion()) < StrictVersion("5.0.0"):
         style = gr.prefs().get_string('qtgui', 'style', 'raster')

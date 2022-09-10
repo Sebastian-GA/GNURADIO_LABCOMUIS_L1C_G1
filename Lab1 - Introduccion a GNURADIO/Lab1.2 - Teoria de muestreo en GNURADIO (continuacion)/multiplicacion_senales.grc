@@ -1,6 +1,6 @@
 options:
   parameters:
-    author: Sebastian - Esteban - G01
+    author: Sebastian - Esteban
     catch_exceptions: 'True'
     category: '[GRC Hier Blocks]'
     cmake_opt: ''
@@ -11,7 +11,7 @@ options:
     gen_linking: dynamic
     generate_options: qt_gui
     hier_block_src_path: '.:'
-    id: punto_3
+    id: multiplicacion_senales
     max_nouts: '0'
     output_language: python
     placement: (0,0)
@@ -22,7 +22,7 @@ options:
     run_options: prompt
     sizing_mode: fixed
     thread_safe_setters: ''
-    title: parte3
+    title: "Multiplicacion Se\xF1ales"
     window_size: (1000,1000)
   states:
     bus_sink: false
@@ -85,7 +85,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 228.0]
+    coordinate: [64, 116.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_1
@@ -107,7 +107,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 364.0]
+    coordinate: [64, 252.0]
     rotation: 0
     state: true
 - name: analog_sig_source_x_2
@@ -129,7 +129,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [96, 500.0]
+    coordinate: [64, 388.0]
     rotation: 0
     state: true
 - name: blocks_multiply_xx_0
@@ -147,7 +147,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [392, 376.0]
+    coordinate: [360, 264.0]
     rotation: 0
     state: true
 - name: qtgui_freq_sink_x_0
@@ -228,7 +228,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 452.0]
+    coordinate: [560, 340.0]
     rotation: 0
     state: true
 - name: qtgui_time_sink_x_0
@@ -274,7 +274,7 @@ blocks:
     label8: Signal 8
     label9: Signal 9
     legend: 'True'
-    marker1: '-1'
+    marker1: '0'
     marker10: '-1'
     marker2: '-1'
     marker3: '-1'
@@ -288,7 +288,7 @@ blocks:
     nconnections: '1'
     size: '1024'
     srate: samp_rate
-    stemplot: 'False'
+    stemplot: 'True'
     style1: '1'
     style10: '1'
     style2: '1'
@@ -325,7 +325,7 @@ blocks:
     bus_sink: false
     bus_source: false
     bus_structure: null
-    coordinate: [592, 340.0]
+    coordinate: [560, 228.0]
     rotation: 0
     state: true
 
@@ -338,3 +338,4 @@ connections:
 
 metadata:
   file_format: 1
+  grc_version: 3.10.2.0
