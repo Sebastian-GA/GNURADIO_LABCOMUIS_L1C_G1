@@ -19,3 +19,17 @@
 ![Tiempo](https://user-images.githubusercontent.com/62948474/189462325-70d0f647-5162-437f-90c2-24f8e3885755.jpeg)
 ![Frecuencia](https://user-images.githubusercontent.com/62948474/189462323-ef0f2ed9-5a96-4c0d-851f-19570912e7a4.jpeg)
 ![GNU](https://user-images.githubusercontent.com/62948474/189462324-62e5e657-67c7-4613-8ab7-cca716239dac.png)
+
+## Modulacion SSB-SC
+
+- LSSB
+
+![Tiempo]()
+![Frecuencia]()
+![GNU]()
+
+- USSB
+
+![Tiempo]()
+![Frecuencia]()
+![GNU]()
