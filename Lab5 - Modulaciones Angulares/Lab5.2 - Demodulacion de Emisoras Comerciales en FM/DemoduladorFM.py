@@ -7,9 +7,9 @@
 # GNU Radio Python Flow Graph
 # Title: Demodulador FM
 # Author: Sebastian - Esteban
-# GNU Radio version: 3.10.2.0
+# GNU Radio version: 3.9.5.0
 
-from packaging.version import Version as StrictVersion
+from distutils.version import StrictVersion
 
 if __name__ == '__main__':
     import ctypes
@@ -123,7 +123,7 @@ class DemoduladorFM(gr.top_block, Qt.QWidget):
             window.WIN_BLACKMAN_hARRIS, #wintype
             0, #fc
             200e3, #bw
-            "", #name
+            "Demodulated", #name
             1,
             None # parent
         )
@@ -139,7 +139,7 @@ class DemoduladorFM(gr.top_block, Qt.QWidget):
         self.qtgui_freq_sink_x_1.set_fft_window_normalized(False)
 
 
-        self.qtgui_freq_sink_x_1.set_plot_pos_half(not True)
+        self.qtgui_freq_sink_x_1.set_plot_pos_half(not False)
 
         labels = ['', '', '', '', '',
             '', '', '', '', '']
@@ -166,7 +166,7 @@ class DemoduladorFM(gr.top_block, Qt.QWidget):
             window.WIN_BLACKMAN_hARRIS, #wintype
             fc, #fc
             10e6, #bw
-            "", #name
+            "Whiout Demodulation", #name
             1,
             None # parent
         )

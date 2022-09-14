@@ -213,7 +213,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: '"Whiout Demodulation"'
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -277,7 +277,7 @@ blocks:
     ctrlpanel: 'False'
     fc: '0'
     fftsize: '8192'
-    freqhalf: 'True'
+    freqhalf: 'False'
     grid: 'False'
     gui_hint: ''
     label: Relative Gain
@@ -294,7 +294,7 @@ blocks:
     legend: 'True'
     maxoutbuf: '0'
     minoutbuf: '0'
-    name: '""'
+    name: '"Demodulated"'
     nconnections: '1'
     norm_window: 'False'
     showports: 'False'
@@ -814,4 +814,3 @@ connections:
 
 metadata:
   file_format: 1
-  grc_version: 3.10.2.0
